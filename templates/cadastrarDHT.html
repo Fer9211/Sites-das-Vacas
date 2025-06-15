@@ -7,17 +7,42 @@
 {% block content %}
     <div class="cadastroDht">
         <h1>Cadastro de DHT</h1>
-        <form class="formDHT">
+        <form class="formDHT" method="post" action="http://localhost:8080/add_sensor">
 
             <div class="formEsq"> 
+                   <div>
+                    <label for="nomeSensors">Nome Sensor DHT:</label>
+                    <div class="text"><input class="input" type="text" id="nomeSensor" name="device_name" placeholder="Nome"></div>
+                </div>
+
                 <div>
-                    <label for="nomeDHT">Nome DHT:</label>
-                    <div class="text"><input class="input" type="text" id="nomeDHT" placeholder="Nome"></div>
+                    <label for="marca">Marca:</label>
+                    <div class="text"><input class="input" type="text" id="marca" name="marca" placeholder="Marca"></div>
+                </div>
+                
+                <div>
+                    <label for="modelo">Modelo:</label>
+                    <div class="text"><input class="input" type="text" id="modelo" name="modelo" placeholder="Modelo"></div>
                 </div>
 
                 <div>
                     <label for="topico">Tópico:</label>
-                    <div class="text"><input class="input" type="text" id="topico" placeholder="Tópico"></div>
+                    <div class="text"><input class="input" type="text" id="topico" name="topico_sensor" placeholder="Tópico"></div>
+                </div>
+
+                <div>
+                    <label for="localizacao">Localizacao Física do dispositivo:</label>
+                    <div class="text"><input class="input" type="text" id="localizacao" name="localizacao_fisica" placeholder="Localização"></div>
+                </div>
+
+                <div>
+                    <label for="status">Status:</label>
+                    <div class="text">
+                        <select name="status_operacional" class="Input">
+                            <option value="Online">Online</option>
+                            <option value="Offline">Offline</option>
+                        </select>
+                    </div>
                 </div>
                 <input class="botaoCadastrar" type = "submit" value = "Cadastrar" />
                 <input class="limparForm" type="reset" value="Limpar formulário">
