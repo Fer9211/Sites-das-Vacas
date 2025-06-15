@@ -20,7 +20,8 @@ def create_app():
     
     # Isso é crucial e deve acontecer antes de qualquer modelo que use 'db.Model' ser importado ou definido
     db.init_app(app)
-
+    
+    app.secret_key = 'chave-secreta'
     @app.route('/')
     def index():
         return render_template("login.html")
