@@ -7,19 +7,43 @@
 {% block content %}
     <div class="cadastroBalanca">
         <h1>Editar Balança</h1>
-        <form class="formBalanca">
-
+        <form class="formBalanca" action="http://localhost:8080/update_balanca" method="post">
+            <input type="hidden" name="id" value="{{ balanca.id }}">
             <div class="formEsq"> 
                 <div>
                     <label for="nomeBalanca">Nome Balança:</label>
-                    <div class="text"><input class="input" type="text" id="nomeBalanca" placeholder="Nome"></div>
+                    <div class="text"><input class="input" type="text" id="nomeBalanca" name="device_name" value="{{balanca.device_name}}" placeholder="Nome"></div>
+                </div>
+
+                <div>
+                    <label for="marca">Marca:</label>
+                    <div class="text"><input class="input" type="text" id="marca" name="marca" value="{{balanca.marca}}" placeholder="Marca"></div>
+                </div>
+                
+                <div>
+                    <label for="modelo">Modelo:</label>
+                    <div class="text"><input class="input" type="text" id="modelo" name="modelo"value="{{balanca.modelo}}" placeholder="Modelo"></div>
                 </div>
 
                 <div>
                     <label for="topico">Tópico:</label>
-                    <div class="text"><input class="input" type="text" id="topico" placeholder="Tópico"></div>
+                    <div class="text"><input class="input" type="text" id="topico" name="topico_balanca" value="{{balanca.topico_balanca}}" placeholder="Tópico"></div>
                 </div>
 
+                <div>
+                    <label for="localizacao">Localizacao Física do dispositivo:</label>
+                    <div class="text"><input class="input" type="text" id="localizacao" name="localizacao_fisica" value="{{balanca.localizacao_fisica}}" placeholder="Localização"></div>
+                </div>
+
+                <div>
+                    <label for="status">Status:</label>
+                    <div class="text">
+                        <select name="status_operacional" value="{{balanca.status_operacional}} class="Input">
+                            <option value="Online">Online</option>
+                            <option value="Offline">Offline</option>
+                        </select>
+                    </div>
+                </div>
                 <div><input class="botaoCadastrar" type = "submit" value = "Editar" /><div>
 
             </div>
