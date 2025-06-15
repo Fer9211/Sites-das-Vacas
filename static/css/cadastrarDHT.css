@@ -7,7 +7,7 @@ h1{
 .cadastroDht{
     background-color: white;
     width: calc(100% - 20px);
-    height: 350px;
+    height: 80%;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
