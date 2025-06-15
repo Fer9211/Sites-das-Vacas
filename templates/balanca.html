@@ -6,6 +6,7 @@
 {% endblock %}
 {% block content %}
     <div class="listaUsers">
+    {% if balancas|length> 0 %}
         <h1>Lista de balanças</h1>
         <div class="tableConteiner">
             <table>
@@ -13,23 +14,40 @@
                     <tr>
                         <th>Nome</th>
                         <th>Tópico</th>
-                        <th>Última leitura</th>
+                        <!-- <th>Última leitura</th> -->
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Localizacao</th>
                         <th>Status</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for balanca in balancas %}
                     <tr>
-                        <td>Algo</td>
-                        <td>Algo</td>
-                        <td>23</td>
-                        <td>Sim</td>
-                        <td><a href="/editarBalanca">Editar</a></td>
-                        <td><a href="#">Excluir</a></td>
+                        <td>{{ balanca.device_name }}</td>
+                        <td>{{ balanca.topico_balanca }}</td>
+                        <td>{{ balanca.marca }}</td>
+                        <td>{{ balanca.modelo }}</td>
+                        <td>{{ balanca.localizacao_fisica }}</td>
+                        {% if balanca.status_operacional == "Online" %}
+                            <td>Online</td>
+                        {% else %}
+                            <td>Offline</td>
+                        {% endif %}
+                        <td><a href="http://localhost:8080/editarBalanca?id={{balanca.id}}">Editar</a></td>
+                        <td><a href="http://localhost:8080/del_balanca?id={{balanca.id}}">Excluir</a></td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
+    {% else %}
+        <p>Ainda não possuem balancas registrados</p>
+        <form  action= "http://localhost:8080/cadastrarBalanca">
+            <p><input type= "submit" value= "Adicionar Balanca  "/></p>
+        </form>
+    {% endif %} 
         </div>
     </div>
 {% endblock %}
