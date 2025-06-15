@@ -6,30 +6,48 @@
 {% endblock %}
 {% block content %}
     <div class="listaUsers">
+    {% if sensores|length> 0 %}
         <h1>Lista de DHT</h1>
         <div class="tableConteiner">
             <table>
                 <thead>
-                    <tr>
+                    <tr> 
                         <th>Nome</th>
                         <th>Tópico</th>
-                        <th>Última leitura</th>
+                        <!-- <th>Última leitura</th> -->
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Localizacao</th>
                         <th>Status</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for sensor in sensores %}
                     <tr>
-                        <td>Algo</td>
-                        <td>Algo</td>
-                        <td>23</td>
-                        <td>Sim</td>
-                        <td><a href="/edtiarDht">Editar</a></td>
-                        <td><a href="#">Excluir</a></td>
+                        <td>{{ sensor.device_name }}</td>
+                        <td>{{ sensor.topico_sensor }}</td>
+                        <td>{{ sensor.marca }}</td>
+                        <td>{{ sensor.modelo }}</td>
+                        <td>{{ sensor.localizacao_fisica }}</td>
+                        {% if sensor.status_operacional == "Online" %}
+                            <td>Online</td>
+                        {% else %}
+                            <td>Offline</td>
+                        {% endif %}
+                        <td><a href="http://localhost:8080/editarDht?id={{sensor.id}}">Editar</a></td>
+                        <td><a href="http://localhost:8080/del_sensor?id={{sensor.id}}">Excluir</a></td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
+    {% else %}
+        <p>Ainda não possuem sensores dht registrados</p>
+        <form  action= "http://localhost:8080/cadastrarDht">
+            <p><input type= "submit" value= "Adicionar DHT"/></p>
+        </form>
+    {% endif %} 
         </div>
     </div>
 {% endblock %}
