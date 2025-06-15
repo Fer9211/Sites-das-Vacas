@@ -6,6 +6,7 @@
 {% endblock %}
 {% block content %}
     <div class="listaUsers">
+    {% if motores|length> 0 %}
         <h1>Lista de motor</h1>
         <div class="tableConteiner">
             <table>
@@ -13,23 +14,41 @@
                     <tr>
                         <th>Nome</th>
                         <th>Tópico</th>
-                        <th>Última leitura</th>
+                        <!-- <th>Última leitura</th> -->
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Localizacao</th>
                         <th>Status</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for motor in motores %}
                     <tr>
-                        <td>Algo</td>
-                        <td>Algo</td>
-                        <td>23</td>
-                        <td>Sim</td>
-                        <td><a href="/editarMotor">Editar</a></td>
-                        <td><a href="#">Excluir</a></td>
+                        <td>{{ motor.device_name }}</td>
+                        <td>{{ motor.topico_motor }}</td>
+                        <td>{{ motor.marca }}</td>
+                        <td>{{ motor.modelo }}</td>
+                        <td>{{ motor.localizacao_fisica }}</td>
+                        {% if motor.status_operacional == "Online" %}
+                            <td>Online</td>
+                        {% else %}
+                            <td>Offline</td>
+                        {% endif %}
+                        <td><a href="http://localhost:8080/editarMotor?id={{motor.id}}">Editar</a></td>
+                        <td><a href="http://localhost:8080/del_motor?id={{motor.id}}">Excluir</a></td>
                     </tr>
+                    {% endfor %}
+
                 </tbody>
             </table>
+    {% else %}
+        <p>Ainda não possuem motores registrados</p>
+        <form  action= "http://localhost:8080/cadastrarMotor">
+            <p><input type= "submit" value= "Adicionar Motor"/></p>
+        </form>
+    {% endif %} 
         </div>
     </div>
 {% endblock %}
