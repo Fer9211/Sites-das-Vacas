@@ -7,9 +7,10 @@ from controllers.historicoController import historico
 from controllers.balancaController import balanca
 from controllers.motorController import motor
 from controllers.dhtController import dht
-
+from utils.create_db import create_db
 if __name__ == '__main__':
     app = create_app()
+    create_db(app)
     app.register_blueprint(user, url_prefix='/')
     app.register_blueprint(configAmbientes, url_prefix='/')
     app.register_blueprint(dadosAtuais, url_prefix='/')
