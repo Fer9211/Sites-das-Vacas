@@ -7,17 +7,42 @@
 {% block content %}
     <div class="cadastroBalanca">
         <h1>Editar DHT</h1>
-        <form class="formBalanca">
-
+        <form class="formBalanca" action="http://localhost:8080/update_sensor" method="post">
+            <input type="hidden" name="id" value="{{ sensor.id }}">
             <div class="formEsq"> 
                 <div>
-                    <label for="nomeDht">Nome DHT:</label>
-                    <div class="text"><input class="input" type="text" id="nomeDht" placeholder="Nome"></div>
+                    <label for="nomeSensor">Nome Sensor:</label>
+                    <div class="text"><input class="input" type="text" id="nomeSensor" name="device_name" value="{{sensor.device_name}}" placeholder="Nome"></div>
+                </div>
+
+                <div>
+                    <label for="marca">Marca:</label>
+                    <div class="text"><input class="input" type="text" id="marca" name="marca" value="{{sensor.marca}}" placeholder="Marca"></div>
+                </div>
+                
+                <div>
+                    <label for="modelo">Modelo:</label>
+                    <div class="text"><input class="input" type="text" id="modelo" name="modelo"value="{{sensor.modelo}}" placeholder="Modelo"></div>
                 </div>
 
                 <div>
                     <label for="topico">Tópico:</label>
-                    <div class="text"><input class="input" type="text" id="topico" placeholder="Tópico"></div>
+                    <div class="text"><input class="input" type="text" id="topico" name="topico_sensor" value="{{sensor.topico_sensor}}" placeholder="Tópico"></div>
+                </div>
+
+                <div>
+                    <label for="localizacao">Localizacao Física do dispositivo:</label>
+                    <div class="text"><input class="input" type="text" id="localizacao" name="localizacao_fisica" value="{{sensor.localizacao_fisica}}" placeholder="Localização"></div>
+                </div>
+
+                <div>
+                    <label for="status">Status:</label>
+                    <div class="text">
+                        <select name="status_operacional" value="{{sensor.status_operacional}} class="Input">
+                            <option value="Online">Online</option>
+                            <option value="Offline">Offline</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div><input class="botaoCadastrar" type = "submit" value = "Editar" /><div>
