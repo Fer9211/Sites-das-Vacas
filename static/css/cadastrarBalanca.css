@@ -3,20 +3,23 @@
 }
 h1{
     font-size: 20px;
+    text-align: center;
 }
 .cadastroBalanca{
     background-color: white;
     width: calc(100% - 20px);
-    height: 350px;
+    height: 80%;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     padding-left: 20px;
+
 }
 .formBalanca{
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+   
 }
 
 .formEsq{
@@ -25,18 +28,21 @@ h1{
     justify-content: space-around;
     height: 200px;
     display: flex;
+    
 }
 .label{
     display: flex;
     flex-direction: column;
     width: 50%;
     height: 100%;
+
 }
 .inputdiv{
     display: flex;
     flex-direction: column;
     width: 50%;
     height: 100%;
+    padding: 10px;
 }
 .input{
     height: 20px;
