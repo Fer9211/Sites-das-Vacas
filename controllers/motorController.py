@@ -1,13 +1,17 @@
 from flask import Blueprint, request, render_template, redirect, url_for
 from models.iot.motor import Motor
+from utils.decorators import role_required
+
 motor = Blueprint("motor_blueprint", __name__, template_folder="templates")
 
 @motor.route('/motores')
+@role_required(roles=['admin', 'veterinario','funcionario'])
 def motores():
     motores = Motor.get_motores()
     return render_template("motor.html", motores = motores)
 
 @motor.route('/cadastrarMotor')
+@role_required(roles=['admin'])
 def cadastrarMotor():
     return render_template('cadastrarMotor.html')
 
@@ -26,6 +30,7 @@ def add_motor():
     return redirect(url_for('motor_blueprint.motores'))
 
 @motor.route("/editarMotor")
+@role_required(roles=['admin'])
 def editarMotor():
     id = request.args.get('id', None)
     motor = Motor.get_single_motor(id)
