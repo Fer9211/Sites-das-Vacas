@@ -1,14 +1,17 @@
 from flask import Blueprint, request, render_template, redirect, url_for
 from models.iot.balanca import Balanca
+from utils.decorators import role_required
 
 balanca = Blueprint("balanca_blueprint", __name__, template_folder="templates")
 
 @balanca.route('/balancas')
+@role_required(roles=['admin', 'funcionario', 'veterinario'])
 def balancas():
     balancas = Balanca.get_balancas()
     return render_template('balanca.html', balancas = balancas)
 
 @balanca.route('/cadastrarBalanca')
+@role_required(roles=['admin'])
 def cadastrarBalanca():
     return render_template('cadastrarBalanca.html')
 
@@ -27,6 +30,7 @@ def add_balanca():
     return redirect(url_for('balanca_blueprint.balancas'))
 
 @balanca.route('/editarBalanca')
+@role_required(roles=['admin'])
 def editarBalanca():
     id = request.args.get('id', None)
     balanca = Balanca.get_single_balanca(id)
