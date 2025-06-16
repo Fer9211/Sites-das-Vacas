@@ -4,15 +4,44 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dadosAtuais.css') }}">
     <title>Dados atuais</title>
 {% endblock %}
+
 {% block content %}
-    <div class="dadosAtuais">
-        <div class="pesoDefinido">
-            <h1>Peso definido</h1>
-            <p>peso ideal:</p>
-        </div>
-        <div class="ambienteHr">
-            <h1>Horário definido para despejo</h1>
-            <p>Horário:</p>
-        </div>
+<div class="dadosAtuais">
+
+    <div class="card pesoDefinido">
+        <h2>📏 Peso Ideal Atual</h2>
+        {% if despejos %}
+            <p><strong>{{ despejos[-1].peso }} kg</strong></p>
+        {% else %}
+            <p>Sem dados de peso cadastrado.</p>
+        {% endif %}
     </div>
+
+    <div class="card ambienteHr">
+        <h2>🕑 Horários Definidos para Despejo</h2>
+        {% if despejos %}
+            <table class="tabelaHorarios">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Horário</th>    
+                        <th>Peso Relacionado (kg)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for despejo in despejos %}
+                        <tr>
+                            <td>{{ despejo.id }}</td>
+                            <td>{{ despejo.horario }}</td>
+                            <td>{{ despejo.peso }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Sem horários cadastrados.</p>
+        {% endif %}
+    </div>
+
+</div>
 {% endblock %}
