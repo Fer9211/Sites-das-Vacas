@@ -7,24 +7,82 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
+.tabelaHorarios {
+    width: 100%; 
+    table-layout: fixed;
+    border-collapse: collapse;
+}
 
-.pesoDefinido{
+.tabelaHorarios thead th,
+.tabelaHorarios tbody td {
+
+    width: 33.33%; 
+    text-align: left; 
+    padding: 8px;
+}
+
+
+.pesoDefinido {
     background-color: white;
-    width: calc(40% - 20px);
-    height: 150px;
     border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 45%; 
+    min-height: 150px;
     display: flex;
     flex-direction: column;
-    padding-left: 20px;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+}
+
+.pesoDefinido h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+
+.pesoDefinido p {
+    font-size: 3em; 
+    font-weight: bold; 
+    color: #007bff;
+    margin: 0; 
+    line-height: 1.2; 
+}
+
+
+.pesoDefinido p strong {
+    font-size: 1em;
+}
+
+
+.pesoDefinido p:last-child { 
+    font-size: 1.2em; 
+    color: #666;
+    font-style: italic;
+    font-weight: normal; 
+}
+
+
+.pesoDefinido h2 {
+    margin-bottom: auto;
+}
+
+.pesoDefinido h2 {
+    margin-bottom: 20px;
 }
 .ambienteHr{
     background-color: white;
-    width: calc(40% - 20px);
-    height: 150px;
     border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    min-height: 150px;
     display: flex;
     flex-direction: column;
-    padding-left: 20px;
+    justify-content: flex-start;
+    overflow-y: auto;
 }
 h1{
     font-size: 20px;
@@ -72,4 +130,8 @@ input[type="time"]:focus {
 .botaoCadastrar:hover{
     background-color: #556b2f3d;
     padding: 8px;
+}
+
+li{
+    text-decoration: none;
 }
