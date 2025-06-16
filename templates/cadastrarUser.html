@@ -7,34 +7,38 @@
 {% block content %}
     <div class="cadastroUser">
         <h1>Cadastro de usuário</h1>
-        <form class="formUser">
+        <form class="formUser" action="http://localhost:8080/add_user" method="post">
 
 
             <div class="formEsq">
-                <div class"label">
-                    <div class="text"><label for="primeiroNome">Primeiro nome:</label></div>
+                <div class="label">
+                    <div class="text"><label for="primeiroNome">Nome usuário:</label></div>
                     <div class="text"><label for="email">Email:</label></div>
                     <div class="text"><label for="telefone">Telefone:</label></div>
+                   
+
                 </div>
 
                 <div class="inputdiv">
-                    <input class="input" type="text" id="primeiroNome" placeholder="Primeiro nome">
-                    <input class="input" type="email" id="email" placeholder="Email">
-                    <input class="input" type="text" id="telefone" placeholder="Ex: (99) 9 9999-9999">
+                    <input class="input" type="text" id="primeiroNome" name="username" placeholder="Primeiro nome">
+                    <input class="input" type="email" id="email" name="email" placeholder="Email">
+                    <input class="input" type="text" id="telefone"name="telefone" placeholder="Ex: (99) 9 9999-9999">
+                   
+                    
                 </div>
             </div>
 
             <div class="formDir">
-                <div class"label">
-                    <div class="text"><label for="SegundoNome">Segundo nome:</label></div>
+                <div class="label">
+
                     <div class="text"><label for="senha">Senha:</label></div>
                     <div class="text"><label for="tipoUser">Tipo de usuário:</label></div>
                 </div>
 
                 <div class="inputdiv">
-                    <input class="input" type="text" id="SegundoNome" placeholder="Segundo Nome">
-                    <input class="input" type="text" id="senha" placeholder="Senha">
-                    <input class="input" type="text" id="tipoUser">
+
+                    <input class="input" type="password" id="senha" name="senha" placeholder="********">
+                    <input class="input" type="text" id="tipoUser" name="role_type_">
                 </div>
             </div>
 
