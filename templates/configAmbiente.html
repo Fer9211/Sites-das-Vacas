@@ -7,18 +7,13 @@
 {% block content %}
     <div class="configAmbientePeso">
         <h1>Novo peso</h1>
-        <form class="formPeso">
+        <form class="formPeso" action="{{ url_for('despejos_blueprint.cadastrar_despejo') }}" method="post">
             <label for="pesoBase">peso ideal:</label>
-            <input type="number" id="pesoBase" placeholder="Kg">
-            <p><input class="botaoCadastrar" type = "submit" value = "Cadastrar" /></p>
-        </form>
-    </div>
-    <div class="configAmbienteHr">
-        <h1>Novo horário para despejo</h1>
-        <form class="formHr">
+            <input type="number" id="pesoBase" name="peso" step="0.01" placeholder="Kg">
             <label for="horario">Horário:</label>
-            <input type="time" id="horario" placeholder="horario definido:">
+            <input type="time" id="horario" name="horario" placeholder="horario definido:">
             <p><input class="botaoCadastrar" type = "submit" value = "Cadastrar" /></p>
         </form>
     </div>
+    
 {% endblock %}
