@@ -1,0 +1,319 @@
+/* Definição de Variáveis CSS para Cores */
+:root {
+    --primary-color: #28a745; /* Verde vibrante */
+    --secondary-color: #007bff; /* Azul clássico */
+    --accent-color: #ffc107; /* Amarelo/laranja de destaque */
+    --text-color: #343a40; /* Texto principal */
+    --light-text-color: #6c757d; /* Texto secundário */
+    --background-light: #f8f9fa; /* Fundo claro */
+    --background-dark: #e9ecef; /* Fundo levemente escuro para seções alternadas */
+    --border-color: #dee2e6; /* Cor da borda */
+    --shadow-light: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --shadow-medium: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+
+    /* REMOVIDO: --font-family-sans-serif */
+    --font-size-base: 1rem;
+}
+
+/* Configuração de Rolagem do Conteúdo Principal */
+.home-page-content {
+    max-height: calc(100vh - 190px); /* Ajuste este valor conforme seu header/footer */
+    overflow-y: auto;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 100%; /* Largura máxima para centralizar o conteúdo */
+    background-color: #fff;
+    box-shadow: var(--shadow-medium);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* Seção de Títulos e Descrição (padrão para todas as seções) */
+.section-block {
+    padding: 40px 20px; /* Preenchimento interno para cada seção */
+    margin-bottom: 20px;
+    background-color: #fff; /* Fundo branco para seções */
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+}
+
+/* Fundo alternado para seções para quebrar a monotonia */
+.section-block:nth-of-type(even) {
+    background-color: var(--background-dark);
+}
+
+.section-title {
+    font-size: 2.2em;
+    color: black;
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.section-title i {
+    margin-right: 15px;
+    color: black;
+}
+
+.section-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    color: black;
+    font-size: 1.1em;
+}
+
+/* Estilo para Botões */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-hero {
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.2em;
+    border: 2px solid var(--primary-color);
+}
+
+.btn-hero:hover {
+    background-color: #218838; /* Um verde mais escuro direto */
+    transform: translateY(-2px);
+}
+
+.btn-primary { /* Mantido caso você queira usar em outras partes futuras */
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 1.1em;
+    border: 2px solid var(--secondary-color);
+}
+
+.btn-primary:hover { /* Mantido caso você queira usar em outras partes futuras */
+    background-color: #0056b3; /* Um azul mais escuro direto */
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 450px; /* Altura do banner */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgb(0, 0, 0); /* Cor padrão para elementos dentro do hero-content */
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-medium);
+
+    background-image: url("{{ url_for('static', filename='img/cow_feeding_hero.jpg') }}"); /* Sua imagem */
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255); /* Camada semi-transparente preta */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+/* Título Principal na Hero Section - Preto e Negrito */
+.hero-content .main-title {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    color: black; /* AGORA É PRETO! */
+    font-weight: bold; /* AGORA É NEGRITO! */
+    text-shadow: none; /* REMOVIDO: qualquer sombra que pudesse "apagar" */
+}
+
+.hero-content .subtitle {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    color: black;
+    text-shadow: none; /* Removendo sombra para simplicidade */
+}
+
+/* Seções com Cards (Problema/Solução, Componentes, Benefícios) */
+.solution-cards, .components-grid, .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; /* Espaçamento maior entre os cards */
+    margin-top: 20px;
+}
+
+.solution-card, .component-item, .benefit-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.solution-card:hover, .component-item:hover, .benefit-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.icon-big {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+.icon-medium {
+    font-size: 2.8em;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+.benefit-icon-big {
+    font-size: 3.2em;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+/* Estilo para "Como Funciona" (Passos) */
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start; /* Alinha o número e o texto no topo */
+    background-color: #fff;
+    border-left: 5px solid var(--primary-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-light);
+    padding: 20px;
+}
+
+.step-number {
+    flex-shrink: 0; /* Garante que o número não diminua */
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-right: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.step-content h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: var(--secondary-color);
+    font-size: 1.3em;
+}
+
+.step-content h4 i {
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+.step-content p {
+    margin-bottom: 0;
+    color: var(--light-text-color);
+}
+
+/* REMOVIDO: Call to Action Footer (e seus estilos) */
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .home-page-content {
+        max-width: 90%;
+        padding: 15px;
+    }
+    .hero-content .main-title {
+        font-size: 2.8em;
+    }
+    .hero-content .subtitle {
+        font-size: 1.4em;
+    }
+    .section-title {
+        font-size: 1.8em;
+    }
+    .icon-big, .icon-medium, .benefit-icon-big {
+        font-size: 2.8em;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-page-content {
+        padding: 10px;
+    }
+    .hero-section {
+        height: 350px;
+    }
+    .hero-content .main-title {
+        font-size: 2.2em;
+    }
+    .hero-content .subtitle {
+        font-size: 1.1em;
+    }
+    .section-title {
+        font-size: 1.6em;
+    }
+    .solution-cards, .components-grid, .benefits-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+    .step-item {
+        flex-direction: column; /* Coloca o número acima do texto */
+        align-items: center;
+        text-align: center;
+    }
+    .step-number {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .step-content h4 i {
+        display: block; /* Quebra linha para o ícone */
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 250px;
+    }
+    .hero-content .main-title {
+        font-size: 1.8em;
+    }
+    .hero-content .subtitle {
+        font-size: 0.9em;
+    }
+    .section-title {
+        font-size: 1.4em;
+    }
+    .section-block {
+        padding: 25px 15px;
+    }
+    .icon-big, .icon-medium, .benefit-icon-big {
+        font-size: 2.2em;
+    }
+}

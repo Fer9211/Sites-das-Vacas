@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> {# Font Awesome #}
+    <title>Visão Geral do Projeto - Sistema de Automação</title>
+{% endblock %}
+
+{% block content %}
+<main class="home-page-content">
+    {# Seção de Herói - Banner com imagem de fundo e texto de destaque #}
+    <section class="hero-section">
+        <div class="hero-overlay"></div> {# Camada semi-transparente para contraste #}
+        <div class="hero-content">
+            <h1 class="main-title">Sistema de Automação de Despejo de Ração para Vacas</h1>
+            <p class="subtitle">A tecnologia que transforma a nutrição do seu rebanho.</p>
+        </div>
+    </section>
+
+    {# Seção de Introdução - Onde antes era o "Bem-vindo" #}
+    <section class="intro-section section-block">
+        <h2 class="section-title"><i class="fas fa-handshake"></i> Bem-vindo(a)</h2>
+        <p class="section-description">Nosso sistema representa um avanço significativo na gestão da alimentação do gado leiteiro, transformando a rotina da fazenda com tecnologia e precisão. Desenvolvido para otimizar o processo de despejo de ração, ele garante que cada animal receba a quantidade exata de alimento no momento certo, promovendo uma nutrição balanceada e eficiente para todo o rebanho.</p>
+    </section>
+
+    {# Seção de Problema e Solução - Usando cards para as soluções #}
+    <section id="problem-solution" class="problem-solution-section section-block">
+        <h2 class="section-title"><i class="fas fa-lightbulb"></i> Por que este sistema? Resolvendo Desafios na Fazenda</h2>
+        <p class="section-description">A alimentação manual do gado é um processo que pode gerar custos elevados e imprecisões. Nosso sistema é a solução inovadora para:</p>
+        <div class="solution-cards">
+            <div class="solution-card">
+                <i class="fas fa-ruler-combined icon-big"></i>
+                <h3>Precisão Inigualável</h3>
+                <p>Elimine a variabilidade humana, garantindo dosagens exatas de ração para cada animal.</p>
+            </div>
+            <div class="solution-card">
+                <i class="fas fa-hand-holding-usd icon-big"></i>
+                <h3>Otimização de Custos</h3>
+                <p>Reduza o desperdício de ração e otimize o uso de mão de obra no dia a dia da fazenda.</p>
+            </div>
+            <div class="solution-card">
+                <i class="fas fa-heartbeat icon-big"></i>
+                <h3>Saúde e Produtividade</h3>
+                <p>Nutrição balanceada e consistente para um rebanho mais saudável e com maior produção de leite.</p>
+            </div>
+        </div>
+    </section>
+
+    {# Seção de Como Funciona - Com uma visualização de passos #}
+    <section class="how-it-works-section section-block">
+        <h2 class="section-title"><i class="fas fa-cogs"></i> Entenda o Funcionamento: Precisão Automatizada</h2>
+        <p class="section-description">O "Sistema de Automação de Despejo de Ração para Vacas" integra hardware e software para um ciclo de alimentação inteligente e autônomo.</p>
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4><i class="fas fa-thermometer-half"></i> Monitoramento Contínuo</h4>
+                    <p>Sensores (DHT, Balanças) coletam dados de ambiente e peso da ração em tempo real.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4><i class="fas fa-brain"></i> Decisão Inteligente</h4>
+                    <p>O sistema processa os dados com base em suas configurações de alimentação programadas.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4><i class="fas fa-stream"></i> Despejo Preciso</h4>
+                    <p>Servo Motor é acionado para liberar a quantidade exata de ração no momento ideal.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4><i class="fas fa-tachometer-alt"></i> Controle Centralizado</h4>
+                    <p>Monitore e gerencie todo o processo de forma remota através desta plataforma web.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Seção de Componentes Principais - Grid de ícones e descrições #}
+    <section class="components-section section-block">
+        <h2 class="section-title"><i class="fas fa-microchip"></i> Tecnologia em Ação: Componentes Principais</h2>
+        <p class="section-description">Este sistema é construído sobre uma arquitetura robusta que combina hardware e software de ponta:</p>
+        <div class="components-grid">
+            <div class="component-item">
+                <i class="fas fa-globe icon-medium"></i>
+                <h4>Web Interface</h4>
+                <p>Seu painel de controle e monitoramento completo.</p>
+            </div>
+            <div class="component-item">
+                <i class="fas fa-wifi icon-medium"></i>
+                <h4>Módulo de Controle (IoT)</h4>
+                <p>Dispositivos inteligentes para coleta e execução na fazenda.</p>
+            </div>
+            <div class="component-item">
+                <i class="fas fa-temperature-low icon-medium"></i>
+                <h4>Sensor DHT</h4>
+                <p>Monitora temperatura e umidade do ambiente.</p>
+            </div>
+            <div class="component-item">
+                <i class="fas fa-weight-hanging icon-medium"></i>
+                <h4>Balança (Célula de Carga)</h4>
+                <p>Medição precisa do peso da ração.</p>
+            </div>
+            <div class="component-item">
+                <i class="fas fa-robot icon-medium"></i>
+                <h4>Servo Motor</h4>
+                <p>Atuador para controle automatizado do despejo.</p>
+            </div>
+            <div class="component-item">
+                <i class="fas fa-paper-plane icon-medium"></i>
+                <h4>Comunicação Segura (MQTT)</h4>
+                <p>Troca de dados em tempo real e de forma confiável.</p>
+            </div>
+        </div>
+    </section>
+
+    {# Seção de Vantagens para o Produtor - Grid com destaques #}
+    <section class="benefits-section section-block">
+        <h2 class="section-title"><i class="fas fa-award"></i> Vantagens para o Produtor: Mais Controle, Mais Lucro</h2>
+        <p class="section-description">Ao adotar o Sistema de Automação de Despejo de Ração, você transforma sua fazenda com benefícios claros:</p>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <i class="fas fa-check-circle benefit-icon-big"></i>
+                <h3>Alimentação Otimizada</h3>
+                <p>Dieta ideal para seu rebanho, melhorando saúde e desempenho.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-chart-line benefit-icon-big"></i>
+                <h3>Redução de Custos</h3>
+                <p>Minimiza desperdício de ração e otimiza mão de obra.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-database benefit-icon-big"></i>
+                <h3>Decisão Baseada em Dados</h3>
+                <p>Informações precisas para estratégias eficazes.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-mobile-alt benefit-icon-big"></i>
+                <h3>Operação Simplificada</h3>
+                <p>Controle intuitivo de qualquer lugar, a qualquer hora.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-shield-alt benefit-icon-big"></i>
+                <h3>Confiabilidade</h3>
+                <p>Sistema robusto e consistente, operando com precisão.</p>
+            </div>
+        </div>
+    </section>
+    
+</main>
+{% endblock %}

@@ -25,7 +25,7 @@ def validated_user():
             flash('Usuário ou senha inválidos!', 'danger')
             return redirect(url_for('user_blueprint.validated_user')) 
     
-    return render_template('login.html')
+    return render_template('dashboard.html')
 
 @user.route('/logout')
 def logout():
