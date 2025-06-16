@@ -1,37 +1,48 @@
 .itensMenu9{
     background-color: #7c8f5b;
 }
-.configAmbientePeso{
+
+.configAmbientePeso {
     background-color: white;
-    width: calc(100% - 20px);
-    height: 150px;
+    width: calc(100% - 40px); 
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    padding-left: 20px;
-}
-.configAmbienteHr{
-    background-color: white;
-    margin-top: 40px;
-    width: calc(100% - 20px);
-    height: 150px;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    padding-left: 20px;
-}
-h1{
-    font-size: 20px;
+    padding: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 20px; 
 }
 
-#pesoBase{
-    height: 20px;
-    width: 200px;
-    border-radius: 10px;
+h1 {
+    font-size: 24px;
+    color: #333; 
+    margin-top: 0; 
+    margin-bottom: 20px; 
+}
+
+.formPeso {
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center; 
+    gap: 15px; 
+}
+
+.formPeso label {
+    font-size: 16px;
+    color: #555;
+    white-space: nowrap; 
+}
+
+#pesoBase {
+    height: 38px;
+    width: 150px; 
+    border-radius: 8px;
     border: 1px solid #bbb;
     padding-left: 10px;
-
+    font-size: 16px; 
+    box-sizing: border-box; 
 }
+
 input[type="number"]:focus {
     border-color: #556B2F;
     box-shadow: 0 0 5px rgba(85, 107, 47, 0.5);
@@ -39,8 +50,9 @@ input[type="number"]:focus {
 }
 
 input[type="time"] {
-    width: 210px;
-    padding-left: 10px;
+    width: 160px; 
+    height: 38px; 
+    padding: 0 10px; 
     font-size: 16px;
     border: 1px solid #bbb;
     border-radius: 8px;
@@ -48,7 +60,7 @@ input[type="time"] {
     color: #333;
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
+    box-sizing: border-box; }
 
 input[type="time"]:focus {
     border-color: #556B2F;
@@ -56,14 +68,25 @@ input[type="time"]:focus {
     background-color: #fff;
 }
 
-.botaoCadastrar{
-    padding: 7px;
+.botaoCadastrar {
+    padding: 10px 20px;
     border: 1px solid #bbb;
     border-radius: 10px;
-    background-color: white;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    margin-top: 10px; 
 }
-.botaoCadastrar:hover{
-    background-color: #556b2f3d;
-    padding: 8px;
+
+.botaoCadastrar:hover {
+    background-color: #556b2f3d; 
+    border-color: #556B2F; 
+}
+
+
+.formPeso p {
+    margin: 0;
+    padding: 0;
 }
