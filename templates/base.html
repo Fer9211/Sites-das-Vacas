@@ -4,10 +4,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
-        <link rel="icon" type="image/png" href="static\imgs\logos\logoFazendaAba.jpeg">
+        
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='imgs/logos/logoFazendaAba.jpeg') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="static\css\fontawesome-free-web\css\all.css">
-        <link rel="stylesheet" href="static/css/base.css">
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-free-web/css/all.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        
         {% block head %}{% endblock %}
     </head>
     <body>
