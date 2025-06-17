@@ -21,10 +21,15 @@
                 <div class="iconMenu"> <i class="fa-solid fa-bars"></i> </div>
             </div>
             <div class="IndicUsuario">
-                <div class="ballUser">
-                    <div class="i"><i class="fa-solid fa-user"></i></div>
-                    <div class="nameUser">Fernanda Moraes</div>
-                </div>
+                {% if 'user_id' in session %}
+                    <div class="ballUser">
+                        <div class="i"><i class="fa-solid fa-user"></i></div>
+                        <div class="nameUser">{{ session.username }}</div>
+                    </div>
+                    <a href="{{ url_for('user_blueprint.logout') }}" title="Sair" class="logout-link">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                {% endif %}
             </div>
         </nav>
         <div class="conteudo">
