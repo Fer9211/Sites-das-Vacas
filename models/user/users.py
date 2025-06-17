@@ -1,6 +1,6 @@
 from models.db import db
 from models.user.roles import Role
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash 
 
 class User(db.Model):
     __tablename__ = "users"
@@ -27,19 +27,18 @@ class User(db.Model):
             Role.name.label("role_type_")
         ).all()
         return users
-
     
     def get_single_user(id):
         user = User.query.filter(User.id == id).first()
 
         if user is not None:
             user = User.query.filter(User.id == id)\
-            .join(Role).add_columns(Role.id, Role.name, Role.description, User.username,
-                                    User.email, User.telefone, User.password).first()
+            .join(Role).add_columns(Role.id.label("role_id"), Role.name, Role.description, User.username,
+                                     User.email, User.telefone, User.password, User.id).first()
 
         return [user]
 
-    def update_user(id, username, email, role_type, telefone):
+    def update_user(id, username, email, role_type, telefone, password=None):
         user = User.query.filter(User.id == id).first()
         if user is not None:
             role = Role.get_single_role(role_type)
@@ -48,10 +47,12 @@ class User(db.Model):
                 user.email = email
                 user.role_id = role.id
                 user.telefone = telefone
+                
+                if password:
+                    user.password = generate_password_hash(password)
+                    
                 db.session.commit()
         return User.get_user()
-
-
     
     def delete_user(id):
         user = User.query.filter(User.id == id).first()
