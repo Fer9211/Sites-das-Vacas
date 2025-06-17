@@ -38,8 +38,8 @@ h1{
 .inputdiv{
     display: flex;
     flex-direction: column;
-    width: 50%;
     height: 100%;
+    margin-right: 20px;
 }
 .text{
     margin-top: 25px;

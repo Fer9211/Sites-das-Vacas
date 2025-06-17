@@ -118,7 +118,7 @@ body{
     margin-left: 15px;
     font-size: 15px;
 }
-.itensMenu1:hover, .itensMenu2:hover, .itensMenu3:hover, .itensMenu4:hover, .itensMenu5:hover{
+.itensMenu1:hover, .itensMenu2:hover, .itensMenu3:hover, .itensMenu4:hover, .itensMenu5:hover, .itensMenu6:hover, .itensMenu7:hover, .itensMenu8:hover, .itensMenu9:hover, .itensMenu10:hover, .itensMenu11:hover{
     background-color: #67745b;
     color: white;
 }
