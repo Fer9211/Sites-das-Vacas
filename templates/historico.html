@@ -22,10 +22,25 @@
                 <tbody>
                     {% for item in historico %}
                     <tr>
-                        <td>{{ item.data_hora }}</td>
-                        <td>{{ item.quantidade_definida }}kg</td>
-                        <td>{{ item.umidade }}</td>
-                        <td>{{ item.peso_restante }}g</td>
+                        {# item.data_hora será um objeto datetime.date ou datetime.datetime
+                           se d.horario no DB for DATE/DATETIME/TIMESTAMP.
+                           Formata para o padrão DD/MM/AAAA HH:MM:SS.
+                           Se for apenas DATE, o %H:%M:%S pode mostrar 00:00:00.
+                        #}
+                        <td>{{ item.data_hora.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+                        
+                        {# item.quantidade_definida já vem da sua query como "d.peso" #}
+                        <td>{{ "%.2fkg" | format(item.quantidade_definida) }}</td>
+                        
+                        {# item.umidade já vem da sua query #}
+                        <td>{% if item.umidade is not none %}{{ item.umidade }}{% else %}N/A{% endif %}</td>
+                        
+                        {# item.peso_restante já vem da sua query #}
+                        <td>{% if item.peso_restante is not none %}{{ "%.2fg" | format(item.peso_restante) }}{% else %}N/A{% endif %}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4">Nenhum registro de histórico encontrado.</td>
                     </tr>
                     {% endfor %}
                 </tbody>
