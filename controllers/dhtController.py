@@ -5,13 +5,13 @@ from utils.decorators import role_required
 dht = Blueprint("dht_blueprint", __name__, template_folder="templates")
 
 @dht.route("/dhts")
-@role_required(roles=['admin', 'veterinario', 'funcionario'])
+@role_required(roles=['Admin', 'Veterinario', 'Funcionario'])
 def dhts():
     sensores = Sensor.get_sensores()
     return render_template("dht.html", sensores = sensores)
 
 @dht.route('/cadastrarDht')
-@role_required(roles=['admin'])
+@role_required(roles=['Admin'])
 def cadastrarDht():
     return render_template('cadastrarDHT.html')
 
@@ -30,7 +30,7 @@ def add_sensor():
     return redirect(url_for('dht_blueprint.dhts'))
 
 @dht.route("/editarDht")
-@role_required(roles=['admin'])
+@role_required(roles=['Admin'])
 def editarDht():
     id = request.args.get('id', None)
     sensor = Sensor.get_single_sensor(id)
