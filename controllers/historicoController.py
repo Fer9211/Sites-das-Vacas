@@ -6,7 +6,7 @@ from sqlalchemy import text
 historico = Blueprint("historico_blueprint", __name__, template_folder="templates")
 
 @historico.route('/historicos')
-@role_required(roles=['admin', 'veterinario','funcionario'])
+@role_required(roles=['Admin', 'Veterinario','Funcionario'])
 def listar_historico():  # ✅ Nome diferente do blueprint
     historico_data = db.session.execute(text("""
     SELECT 
