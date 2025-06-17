@@ -253,7 +253,7 @@ def create_app():
         """
         Renders the login HTML page as the application's root.
         """
-        return render_template('login.html')
+        return redirect(url_for('user_blueprint.login'))
 
     return app
 
