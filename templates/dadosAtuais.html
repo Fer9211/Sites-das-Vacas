@@ -32,7 +32,7 @@
                     {% for despejo in despejos %}
                         <tr>
                             <td>{{ despejo.id }}</td>
-                            <td>{{ despejo.horario }}</td>
+                            <td>{{ despejo.data_hora.strftime('%H:%M') }}</td>
                             <td>{{ despejo.peso }}</td>
                         </tr>
                     {% endfor %}
