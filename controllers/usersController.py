@@ -42,21 +42,17 @@ def add_user():
         role_id = request.form['role_id']
 
         if User.query.filter_by(username=username).first():
-            flash(f'O nome de usuário "{username}" já está em uso.', 'danger')
             return redirect(url_for('user_blueprint.cadastrarUser'))
         
         if User.query.filter_by(email=email).first():
-            flash(f'O email "{email}" já está cadastrado.', 'danger')
             return redirect(url_for('user_blueprint.cadastrarUser'))
         
         role = Role.query.get(role_id)
         if not role:
-            flash('Função (role) inválida selecionada.', 'danger')
             return redirect(url_for('user_blueprint.cadastrarUser'))
 
         User.save_user(role_type_=role.name, username=username, email=email, password=password, telefone=telefone)
 
-        flash(f'Usuário {username} cadastrado com sucesso!', 'success')
         return redirect(url_for('user_blueprint.listarUser'))
 
     return redirect(url_for('user_blueprint.cadastrarUser'))
@@ -81,7 +77,6 @@ def editarUsuario(id):
     all_roles = Role.query.all()
 
     if not user_data:
-        flash('Usuário não encontrado!', 'danger')
         return redirect(url_for('user_blueprint.listarUser'))
 
     return render_template('editarUsuario.html', user=user_data, roles=all_roles)
@@ -100,7 +95,6 @@ def update_user(id):
     
     User.update_user(id, username, email, role.name, telefone, password)
 
-    flash('Usuário atualizado com sucesso!', 'success')
     return redirect(url_for('user_blueprint.listarUser'))
 
 @user.route('/delete_user/<int:id>')
