@@ -74,10 +74,34 @@ def listarUser():
     users_from_db = User.get_user()
     return render_template('usuarios.html', users=users_from_db)
 
-@user.route("/editarUsuario")
+@user.route("/editarUsuario/<int:id>")
 @role_required(roles=['Admin'])
-def editarUsuario():
-    return render_template('editarUsuario.html')
+def editarUsuario(id):
+    user_data = User.get_single_user(id)[0] 
+    all_roles = Role.query.all()
+
+    if not user_data:
+        flash('Usuário não encontrado!', 'danger')
+        return redirect(url_for('user_blueprint.listarUser'))
+
+    return render_template('editarUsuario.html', user=user_data, roles=all_roles)
+
+
+@user.route("/update_user/<int:id>", methods=['POST'])
+@role_required(roles=['Admin'])
+def update_user(id):
+    username = request.form['username']
+    email = request.form['email']
+    telefone = request.form['telefone']
+    role_id = request.form['role_id']
+    password = request.form['password'] 
+    
+    role = Role.query.get(role_id)
+    
+    User.update_user(id, username, email, role.name, telefone, password)
+
+    flash('Usuário atualizado com sucesso!', 'success')
+    return redirect(url_for('user_blueprint.listarUser'))
 
 @user.route('/delete_user/<int:id>')
 @role_required(roles=['Admin'])
