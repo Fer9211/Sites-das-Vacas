@@ -1,3 +1,4 @@
+import datetime
 from models.db import db
 
 class Despejo(db.Model):
@@ -5,4 +6,4 @@ class Despejo(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     peso = db.Column(db.Float, nullable=False)
-    horario = db.Column(db.String(10), nullable=False)  
+    data_hora = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
