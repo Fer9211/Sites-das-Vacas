@@ -32,7 +32,7 @@
                     {% for despejo in despejos %}
                         <tr>
                             <td>{{ despejo.id }}</td>
-                            <td>{{ despejo.horario }}</td>
+                            <td>{{ despejo.data_hora.strftime('%H:%M') }}</td>
                             <td>{{ despejo.peso }}</td>
                         </tr>
                     {% endfor %}
@@ -41,6 +41,21 @@
         {% else %}
             <p>Sem horários cadastrados.</p>
         {% endif %}
+    </div>
+
+    <div class="card pesoDefinido">
+        <h2>⚖️ Peso Atual</h2>
+            <p><strong>10 kg</strong></p>
+    </div>
+
+    <div class="card pesoDefinido">
+        <h2>💧 Umidade Atual</h2>
+            <p><strong>40%</strong></p>
+    </div>
+
+    <div class="card pesoDefinido">
+        <h2>🚨 Status Motor</h2>
+            <p><strong>Fechado</strong></p>
     </div>
 
 </div>

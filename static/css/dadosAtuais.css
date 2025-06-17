@@ -1,101 +1,88 @@
-.itensMenu10{
+.itensMenu10 {
     background-color: #7c8f5b;
 }
-.dadosAtuais{
+
+.dadosAtuais {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center; /* Mudei para 'center' para um agrupamento mais centralizado */
+    gap: 30px; /* Adiciona um espaçamento de 30px entre todos os itens flex */
+    padding: 20px; /* Adiciona um padding ao redor do container geral para evitar que os cards fiquem colados nas bordas */
 }
+
 .tabelaHorarios {
-    width: 100%; 
+    width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
 }
 
 .tabelaHorarios thead th,
 .tabelaHorarios tbody td {
-
-    width: 33.33%; 
-    text-align: left; 
+    width: 33.33%;
+    text-align: left;
     padding: 8px;
 }
 
-
-.pesoDefinido {
+/* Aplicando ao .pesoDefinido e .ambienteHr, pois ambos são 'cards' */
+.pesoDefinido,
+.ambienteHr {
     background-color: white;
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 45%; 
+    width: 45%; /* Mantém a largura original */
     min-height: 150px;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Remover margin-bottom e margin-right pois o `gap` fará esse trabalho */
 }
 
 .pesoDefinido h2 {
     font-size: 1.5em;
     color: #333;
-    margin-bottom: 15px;
+    margin-bottom: 15px; /* Mantém o espaçamento interno do h2 */
 }
-
 
 .pesoDefinido p {
-    font-size: 3em; 
-    font-weight: bold; 
+    font-size: 3em;
+    font-weight: bold;
     color: #007bff;
-    margin: 0; 
-    line-height: 1.2; 
+    margin: 0;
+    line-height: 1.2;
 }
-
 
 .pesoDefinido p strong {
     font-size: 1em;
 }
 
-
-.pesoDefinido p:last-child { 
-    font-size: 1.2em; 
+.pesoDefinido p:last-child {
+    font-size: 1.2em;
     color: #666;
     font-style: italic;
-    font-weight: normal; 
+    font-weight: normal;
 }
 
-
-.pesoDefinido h2 {
-    margin-bottom: auto;
-}
-
-.pesoDefinido h2 {
-    margin-bottom: 20px;
-}
-.ambienteHr{
-    background-color: white;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 45%;
-    min-height: 150px;
-    display: flex;
-    flex-direction: column;
+.ambienteHr {
     justify-content: flex-start;
     overflow-y: auto;
 }
-h1{
+
+h1 {
     font-size: 20px;
 }
 
-#pesoBase{
+#pesoBase {
     height: 20px;
     width: 200px;
     border-radius: 10px;
     border: 1px solid #bbb;
     padding-left: 10px;
-
 }
+
 input[type="number"]:focus {
     border-color: #556B2F;
     box-shadow: 0 0 5px rgba(85, 107, 47, 0.5);
@@ -120,18 +107,19 @@ input[type="time"]:focus {
     background-color: #fff;
 }
 
-.botaoCadastrar{
+.botaoCadastrar {
     padding: 7px;
     border: 1px solid #bbb;
     border-radius: 10px;
     background-color: white;
     cursor: pointer;
 }
-.botaoCadastrar:hover{
+
+.botaoCadastrar:hover {
     background-color: #556b2f3d;
     padding: 8px;
 }
 
-li{
+li {
     text-decoration: none;
 }

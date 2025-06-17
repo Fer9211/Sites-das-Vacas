@@ -5,13 +5,13 @@ from utils.decorators import role_required
 motor = Blueprint("motor_blueprint", __name__, template_folder="templates")
 
 @motor.route('/motores')
-@role_required(roles=['admin', 'veterinario','funcionario'])
+@role_required(roles=['Admin', 'Veterinario','Funcionario'])
 def motores():
     motores = Motor.get_motores()
     return render_template("motor.html", motores = motores)
 
 @motor.route('/cadastrarMotor')
-@role_required(roles=['admin'])
+@role_required(roles=['Admin'])
 def cadastrarMotor():
     return render_template('cadastrarMotor.html')
 
@@ -30,7 +30,7 @@ def add_motor():
     return redirect(url_for('motor_blueprint.motores'))
 
 @motor.route("/editarMotor")
-@role_required(roles=['admin'])
+@role_required(roles=['Admin'])
 def editarMotor():
     id = request.args.get('id', None)
     motor = Motor.get_single_motor(id)

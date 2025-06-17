@@ -4,6 +4,6 @@ from utils.decorators import role_required
 configAmbientes = Blueprint("configAmbiente_blueprint", __name__, template_folder="templates")
 
 @configAmbientes.route('/configAmbiente')
-@role_required(roles=['admin', 'veterinario'])
+@role_required(roles=['Admin', 'Veterinario'])
 def configAmbiente():
     return render_template('configAmbiente.html')

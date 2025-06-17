@@ -7,43 +7,40 @@
 {% block content %}
     <div class="cadastroUser">
         <h1>Cadastro de usuário</h1>
-        <form class="formUser" action="http://localhost:8080/add_user" method="post">
-
+        <form class="formUser" action="{{ url_for('user_blueprint.add_user') }}" method="post">
 
             <div class="formEsq">
                 <div class="label">
-                    <div class="text"><label for="primeiroNome">Nome usuário:</label></div>
+                    <div class="text"><label for="username">Nome usuário:</label></div>
                     <div class="text"><label for="email">Email:</label></div>
                     <div class="text"><label for="telefone">Telefone:</label></div>
-                   
-
                 </div>
-
                 <div class="inputdiv">
-                    <input class="input" type="text" id="primeiroNome" name="username" placeholder="Primeiro nome">
-                    <input class="input" type="email" id="email" name="email" placeholder="Email">
-                    <input class="input" type="text" id="telefone"name="telefone" placeholder="Ex: (99) 9 9999-9999">
-                   
-                    
+                    <input class="input" type="text" id="username" name="username" placeholder="Nome de usuário" required>
+                    <input class="input" type="email" id="email" name="email" placeholder="Email" required>
+                    <input class="input" type="text" id="telefone" name="telefone" placeholder="Ex: (99) 99999-9999" required>
                 </div>
             </div>
 
             <div class="formDir">
                 <div class="label">
-
                     <div class="text"><label for="senha">Senha:</label></div>
-                    <div class="text"><label for="tipoUser">Tipo de usuário:</label></div>
+                    <div class="text">
+                        <label for="role_id">Tipo de usuário:</label>
+                    </div>
                 </div>
-
                 <div class="inputdiv">
-
-                    <input class="input" type="password" id="senha" name="senha" placeholder="********">
-                    <input class="input" type="text" id="tipoUser" name="role_type_">
+                    <input class="input" type="password" id="senha" name="senha" placeholder="********" required>
+                    <select name="role_id" required class="input">
+                        <option value="" disabled selected>Selecione uma função</option>
+                        {% for role in roles %}
+                            <option value="{{ role.id }}">{{ role.name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
 
-
-            <input class="botaoCadastrar" type = "submit" value = "Cadastrar" />
+            <input class="botaoCadastrar" type="submit" value="Cadastrar" />
             <input class="limparForm" type="reset" value="Limpar formulário">
         </form>
     </div>

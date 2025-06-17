@@ -1,6 +1,6 @@
 import datetime
 import json
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, redirect, url_for
 from flask_mqtt import Mqtt
 # Ensure these imports point to your actual models
 from models.db import db, instance
@@ -253,7 +253,7 @@ def create_app():
         """
         Renders the login HTML page as the application's root.
         """
-        return render_template('login.html')
+        return redirect(url_for('user_blueprint.login'))
 
     return app
 

@@ -1,37 +1,48 @@
 {% extends "base.html" %}
+
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/historico.css') }}">
     <title>Histórico</title>
 {% endblock %}
+
 {% block content %}
     <div class="historico">
         <h1>Histórico</h1>
-        <div class="tableConteiner">
+        <div class="tableContainer">
             <table>
                 <thead>
                     <tr>
-                        <th>Horario definido</th>
-                        <th>Quantidade definida</th>
-                        <th>Data configuração</th>
-                        <th>Momento</th>
-                        <th>Quantidade depejada</th>
-                        <th>Peso restante</th>
+                        <th>Data/Hora</th>
+                        <th>Quantidade Definida</th>
                         <th>Umidade</th>
-                        <th>Ativo</th>
+                        <th>Peso Restante</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for item in historico %}
                     <tr>
-                        <td>12:00 20:00</td>
-                        <td>16kg</td>
-                        <td>01/06/2025 22:23</td>
-                        <td>02/06/2025 12:20</td>
-                        <td>16200</td>
-                        <td>200</td>
-                        <td>70%</td>
-                        <td>Sim</td>
+                        {# item.data_hora será um objeto datetime.date ou datetime.datetime
+                           se d.horario no DB for DATE/DATETIME/TIMESTAMP.
+                           Formata para o padrão DD/MM/AAAA HH:MM:SS.
+                           Se for apenas DATE, o %H:%M:%S pode mostrar 00:00:00.
+                        #}
+                        <td>{{ item.data_hora.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+                        
+                        {# item.quantidade_definida já vem da sua query como "d.peso" #}
+                        <td>{{ "%.2fkg" | format(item.quantidade_definida) }}</td>
+                        
+                        {# item.umidade já vem da sua query #}
+                        <td>{% if item.umidade is not none %}{{ item.umidade }}{% else %}N/A{% endif %}</td>
+                        
+                        {# item.peso_restante já vem da sua query #}
+                        <td>{% if item.peso_restante is not none %}{{ "%.2fg" | format(item.peso_restante) }}{% else %}N/A{% endif %}</td>
                     </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4">Nenhum registro de histórico encontrado.</td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

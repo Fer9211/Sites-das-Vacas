@@ -1,49 +1,104 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash, session
 from utils.decorators import role_required
+from models.user.users import User 
+from models.user.roles import Role
+from werkzeug.security import check_password_hash
 
 user = Blueprint("user_blueprint", __name__, template_folder="templates")
 
-users = {
-    'admin': {'password': '1234', 'role': 'admin'},
-    'veterinario':   {'password': '1234', 'role': 'veterinario'},
-    'funcionario':  {'password': '1234', 'role': 'funcionario'}
-}
-@user.route('/validated_user', methods=['GET','POST'])
-def validated_user():
+@user.route('/login', methods=['GET', 'POST'])
+def login():  
     if request.method == 'POST':
-        user_form = request.form['user']
-        password = request.form['password']
-        if user_form in users and users[user_form]['password'] == password:
-            
-            session['user_id'] = user_form
-            session['role'] = users[user_form]['role']
-            
-            flash(f'Bem-vindo, {user_form}!', 'success')
-            return redirect(url_for('dadosAtuais_blueprint.dadoAtual')) 
+        username_form = request.form['user']
+        password_form = request.form['password']
 
+        user_db = User.query.filter_by(username=username_form).first()
+
+        if user_db and check_password_hash(user_db.password, password_form):
+            user_role = Role.query.get(user_db.role_id)
+            session['user_id'] = user_db.id
+            session['username'] = user_db.username
+            session['role'] = user_role.name
+            return redirect(url_for('dadosAtuais_blueprint.dadoAtual'))
         else:
-            flash('Usuário ou senha inválidos!', 'danger')
-            return redirect(url_for('user_blueprint.validated_user')) 
-    
-    return render_template('dashboard.html')
+            return redirect(url_for('user_blueprint.login'))
+
+    return render_template('login.html')
 
 @user.route('/logout')
 def logout():
     session.clear() 
-    flash('Você saiu do sistema.', 'info')
-    return redirect(url_for('user_blueprint.validated_user'))
+    return redirect(url_for('user_blueprint.login'))
     
+@user.route('/add_user', methods=['POST'])
+@role_required(roles=['Admin']) 
+def add_user():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        telefone = request.form['telefone']
+        password = request.form['senha']
+        role_id = request.form['role_id']
+
+        if User.query.filter_by(username=username).first():
+            return redirect(url_for('user_blueprint.cadastrarUser'))
+        
+        if User.query.filter_by(email=email).first():
+            return redirect(url_for('user_blueprint.cadastrarUser'))
+        
+        role = Role.query.get(role_id)
+        if not role:
+            return redirect(url_for('user_blueprint.cadastrarUser'))
+
+        User.save_user(role_type_=role.name, username=username, email=email, password=password, telefone=telefone)
+
+        return redirect(url_for('user_blueprint.listarUser'))
+
+    return redirect(url_for('user_blueprint.cadastrarUser'))
+
+
 @user.route('/cadastrarUser')
-@role_required(roles=['admin'])
+@role_required(roles=['Admin'])
 def cadastrarUser():
-    return render_template('cadastrarUser.html')
+    roles = Role.query.all()
+    return render_template('cadastrarUser.html', roles=roles)
 
 @user.route('/listarUser')
-@role_required(roles=['admin','funcionario'])
+@role_required(roles=['Admin', 'Funcionario']) 
 def listarUser():
-    return render_template('usuarios.html')
+    users_from_db = User.get_user()
+    return render_template('usuarios.html', users=users_from_db)
 
-@user.route("/editarUsuario")
-@role_required(roles=['admin'])
-def editarUsuario():
-    return render_template('editarUsuario.html')
+@user.route("/editarUsuario/<int:id>")
+@role_required(roles=['Admin'])
+def editarUsuario(id):
+    user_data = User.get_single_user(id)[0] 
+    all_roles = Role.query.all()
+
+    if not user_data:
+        return redirect(url_for('user_blueprint.listarUser'))
+
+    return render_template('editarUsuario.html', user=user_data, roles=all_roles)
+
+
+@user.route("/update_user/<int:id>", methods=['POST'])
+@role_required(roles=['Admin'])
+def update_user(id):
+    username = request.form['username']
+    email = request.form['email']
+    telefone = request.form['telefone']
+    role_id = request.form['role_id']
+    password = request.form['password'] 
+    
+    role = Role.query.get(role_id)
+    
+    User.update_user(id, username, email, role.name, telefone, password)
+
+    return redirect(url_for('user_blueprint.listarUser'))
+
+@user.route('/delete_user/<int:id>')
+@role_required(roles=['Admin'])
+def delete_user(id):
+    User.delete_user(id)
+    
+    return redirect(url_for('user_blueprint.listarUser'))

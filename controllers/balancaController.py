@@ -5,13 +5,13 @@ from utils.decorators import role_required
 balanca = Blueprint("balanca_blueprint", __name__, template_folder="templates")
 
 @balanca.route('/balancas')
-@role_required(roles=['admin', 'funcionario', 'veterinario'])
+@role_required(roles=['Admin', 'Funcionario', 'Veterinario'])
 def balancas():
     balancas = Balanca.get_balancas()
     return render_template('balanca.html', balancas = balancas)
 
 @balanca.route('/cadastrarBalanca')
-@role_required(roles=['admin'])
+@role_required(roles=['Admin'])
 def cadastrarBalanca():
     return render_template('cadastrarBalanca.html')
 
@@ -30,7 +30,7 @@ def add_balanca():
     return redirect(url_for('balanca_blueprint.balancas'))
 
 @balanca.route('/editarBalanca')
-@role_required(roles=['admin'])
+@role_required(roles=['Admin'])
 def editarBalanca():
     id = request.args.get('id', None)
     balanca = Balanca.get_single_balanca(id)

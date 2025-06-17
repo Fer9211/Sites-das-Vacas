@@ -9,23 +9,30 @@ def create_db(app: Flask):
         db.drop_all()
         db.create_all()
 
-        admin_role = Role.query.filter_by(name='Admin').first()
-        if not admin_role:
-            admin_role = Role(name='Admin', description='Administrador do sistema com acesso total.')
-            db.session.add(admin_role)
-            db.session.commit()
+        roles = ['Admin', 'Funcionario', 'Veterinario']
+        descriptions = {
+            'Admin': 'Administrador do sistema com acesso total.',
+            'Funcionario': 'Funcionário com acesso a operações do dia-a-dia.',
+            'Veterinario': 'Veterinário com acesso a dados de saúde e relatórios.'
+        }
 
-        hashed_password = generate_password_hash("sua_senha_admin_muito_segura")
-
-        admin_user = User(
-            role_id=admin_role.id,
-            username="admin",
-            email="admin@seuprojeto.com",
-            password=hashed_password,
-            telefone="(XX) XXXXX-XXXX"
-        )
-
-        db.session.add(admin_user)
+        for role_name in roles:
+            if not Role.query.filter_by(name=role_name).first():
+                role = Role(name=role_name, description=descriptions[role_name])
+                db.session.add(role)
+        
         db.session.commit()
+        admin_role = Role.query.filter_by(name='Admin').first()
+        if not User.query.filter_by(username='admin').first():
+            hashed_password = generate_password_hash("1234") 
 
-        print("Banco de dados resetado e usuário 'admin' criado com sucesso!")
+            admin_user = User(
+                role_id=admin_role.id,
+                username="admin",
+                email="admin@gmail.com",
+                password=hashed_password,
+                telefone="(99) 99999-9999"
+            )
+            db.session.add(admin_user)
+            db.session.commit()
+            print(" Usuário 'admin'  criado com sucesso!")
