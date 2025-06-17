@@ -14,54 +14,23 @@
                         <th>Nome</th>
                         <th>Email</th>
                         <th>Telefone</th>
-                        <th>Data de criação</th>
                         <th>Tipo de usuário</th>
-                        <th>Status</th>
-                        <th></th>
-                        <th></th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for user in users %}
                     <tr>
-                        <td>Fernanda Costa Moraes</td>
-                        <td>fernanda@gmail.com</td>
-                        <td>(99) 9999-9999</td>
-                        <td>01/06/2025 22:23</td>
-                        <td>Admin</td>
-                        <td>Ativo</td>
-                        <td><a href="/editarUsuario">Editar</a></td>
-                        <td><a href="#">Excluir</a></td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.telefone }}</td>
+                        <td>{{ user.role_type_ }}</td>
+                        <td>
+                            <a href="{{ url_for('user_blueprint.editarUsuario', id=user.id) }}">Editar</a>
+                            <a href="{{ url_for('user_blueprint.delete_user', id=user.id) }}" onclick="return confirm('Tem certeza que deseja excluir este usuário?');">Excluir</a>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>Andressa de Oliveira Barros</td>
-                        <td>andressagmail.com</td>
-                        <td>(99) 9999-9999</td>
-                        <td>01/06/2025 22:23</td>
-                        <td>Admin</td>
-                        <td>Ativo</td>
-                        <td><a href="/editarUsuario">Editar</a></td>
-                        <td><a href="#">Excluir</a></td>
-                    </tr>
-                    <tr>
-                        <td>Lissa Deguti</td>
-                        <td>Lissa@gmail.com</td>
-                        <td>(99) 9999-9999</td>
-                        <td>01/06/2025 22:23</td>
-                        <td>Admin</td>
-                        <td>Ativo</td>
-                        <td><a href="/editarUsuario">Editar</a></td>
-                        <td><a href="#">Excluir</a></td>
-                    </tr>
-                    <tr>
-                        <td>Melissa Weiss Perussulo</td>
-                        <td>Melissa@gmail.com</td>
-                        <td>(99) 9999-9999</td>
-                        <td>01/06/2025 22:23</td>
-                        <td>Admin</td>
-                        <td>Ativo</td>
-                        <td><a href="/editarUsuario">Editar</a></td>
-                        <td><a href="#">Excluir</a></td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
