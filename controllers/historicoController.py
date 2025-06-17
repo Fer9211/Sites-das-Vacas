@@ -6,11 +6,11 @@ from sqlalchemy import text
 historico = Blueprint("historico_blueprint", __name__, template_folder="templates")
 
 @historico.route('/historicos')
-@role_required(roles=['Admin', 'Veterinario','Funcionario'])
-def listar_historico():  # ✅ Nome diferente do blueprint
+@role_required(roles=['admin', 'veterinario','funcionario'])
+def listar_historico():
     historico_data = db.session.execute(text("""
-    SELECT 
-        d.horario AS data_hora,
+    SELECT
+        d.data_hora AS data_hora,          -- MUDANÇA AQUI: Agora seleciona 'd.data_hora'
         d.peso AS quantidade_definida,
         s.valor_umidade AS umidade,
         bl.peso AS peso_restante
@@ -21,7 +21,7 @@ def listar_historico():  # ✅ Nome diferente do blueprint
     LEFT JOIN balanca_leituras bl ON bl.id_device = (
         SELECT id_device FROM balanca ORDER BY id DESC LIMIT 1
     )
-    ORDER BY d.horario DESC
+    ORDER BY d.data_hora DESC -- MUDANÇA AQUI: Ordena por 'd.data_hora'
     LIMIT 10;
 """)).fetchall()
 
